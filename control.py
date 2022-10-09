@@ -74,11 +74,12 @@ def retrieve(id='', name='', last_name='', number='', email='', format=''):
             continue
         if(email != '' and row[3] != email.lower()):
             continue
+        result.append(", ".join(map(str, row)))
         # result.append(row)
-        if(format == 1):
-            result.append(", ".join(map(str, row)))
-        if(format == 2):
-            result.append("\n".join(map(str, row)))
+        # if(format == 1):
+        #     result.append(", ".join(map(str, row)))
+        # if(format == 2):
+        #     result.append("\n".join(map(str, row)))
     if len(result) == 0:
         return f'Contacts not found'
     else:
@@ -135,9 +136,13 @@ def delete(id=''):
             writer.writerow(row)
 
 
-def get_token():
-    file = open('token.csv', 'r')
-    for i in file:
-        token = i
-    file.close()
-    return token
+def upload(file_name='data.csv'):
+    user_file_name = file_name
+    # open both files
+    if os.path.exists(user_file_name):
+        with open(user_file_name, 'r') as first, open('base_phone.csv', 'a') as second:
+            # read content from first file
+            for line in first:
+                # append content to second file
+                second.write(line)
+            second.seek(0, 2)

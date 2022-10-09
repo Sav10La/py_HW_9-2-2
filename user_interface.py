@@ -15,19 +15,20 @@ def ls_menu():
         print('5. Add new entry.')
         print('6. Edit an existing entry.')
         print('7. Delete an entry.')
-        print('8. Close program.\n')
+        print('8. Import data from file.')
+        print('9. Close program.\n')
         n = сhecking_the_number(input('Choose menu item: '))
 
         if n == 1:
             lg.logging.info('The user has selected item number 1')
-            print('1. Display entry as a row.')
-            print('2. Display entry as a paragraph.' '\n')
-            display = сhecking_the_number(input('Enter item number: '))
-            if display == 1:
-                lg.logging.info('The user has selected item number 1.1')
-            elif display == 2:
-                lg.logging.info('The user has selected item number 1.2')
-            print(cl.retrieve(format=display))
+            # print('1. Display entry as a row.')
+            # print('2. Display entry as a paragraph.' '\n')
+            # display = сhecking_the_number(input('Enter item number: '))
+            # if display == 1:
+            #     lg.logging.info('The user has selected item number 1.1')
+            # elif display == 2:
+            #     lg.logging.info('The user has selected item number 1.2')
+            print(cl.retrieve())
 
 
         elif n == 2:
@@ -146,6 +147,14 @@ def ls_menu():
                     '\nSuch menu item does not exist.\nEnter the number corresponding to the menu item.')
 
         elif n == 8:
+            lg.logging.info('The user has selected item number 8')
+            name = input('Enter file name: ')
+            lg.logging.info('User entered: {file_name}')
+            cl.upload(file_name=name)
+            lg.logging.info('User imported data from: {file_name}')
+            print('The data was imported successfully!')
+
+        elif n == 9:
             lg.logging.info('End')
             print('Bye bye!')
             break
@@ -154,6 +163,7 @@ def ls_menu():
             lg.logging.info('User entered an invalid menu value: {n}')
             print(
                 '\nSuch menu item does not exist.\nEnter the number corresponding to the menu item.')
+
 
 def сhecking_the_number(arg):
     while arg.isdigit() != True:
